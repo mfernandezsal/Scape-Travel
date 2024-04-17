@@ -1,0 +1,24 @@
+@page "/edit-familia"
+
+<PageTitle>Editar Familia</PageTitle>
+
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save Familia</RadzenAlert>
+        <RadzenTemplateForm TItem="ScapeTravelWEB.Models.ScapeTravelDB.Familia" Data="@familia" Visible="@(familia != null)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="Nombre" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@familia.Nombre" Name="Nombre" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="Nombre" Text="EL nombre es requerido" />
+                  </Helper>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Guardar" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancelar" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

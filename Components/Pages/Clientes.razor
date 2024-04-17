@@ -1,0 +1,58 @@
+@page "/clientes"
+
+<PageTitle>Clientes</PageTitle>
+<RadzenStack>
+    <RadzenRow AlignItems="AlignItems.Center">
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenText Text="Clientes" TextStyle="TextStyle.H3" TagName="TagName.H1" style="margin: 0" />
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                <RadzenButton Icon="add_circle_outline" Text="Agregar" Click="@AddButtonClick" Variant="Variant.Flat" />
+            </RadzenStack>
+        </RadzenColumn>
+    </RadzenRow>
+    <RadzenTextBox Placeholder="Buscar..." style="display: block; width: 100%" @oninput="@Search" aria-label="Search by all string columns" />
+    <RadzenRow>
+      <RadzenColumn SizeMD=12>
+        <RadzenDataGrid @ref="grid0" ColumnWidth="200px"   AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
+            Data="@clientes" TItem="ScapeTravelWEB.Models.ScapeTravelDB.Cliente">
+            <Columns>
+                <RadzenDataGridColumn TItem="ScapeTravelWEB.Models.ScapeTravelDB.Cliente" Property="CI" Title="CI">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="ScapeTravelWEB.Models.ScapeTravelDB.Cliente" Property="Nombre" Title="Nombre">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="ScapeTravelWEB.Models.ScapeTravelDB.Cliente" Property="Apellido_pat" Title="Apellido Paterno">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="ScapeTravelWEB.Models.ScapeTravelDB.Cliente" Property="Apellido_mat" Title="Apellido Materno">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="ScapeTravelWEB.Models.ScapeTravelDB.Cliente" Property="Nacimiento" FormatString="{0:d}" Title="Nacimiento">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="ScapeTravelWEB.Models.ScapeTravelDB.Cliente" Property="Genero" Title="Género">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="ScapeTravelWEB.Models.ScapeTravelDB.Cliente" Property="Nacionalidad" Title="Nacionalidad">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="ScapeTravelWEB.Models.ScapeTravelDB.Cliente" Property="Nro_pasaporte" Title="Pasaporte">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="ScapeTravelWEB.Models.ScapeTravelDB.Cliente" Property="Telefono" Title="Teléfono">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="ScapeTravelWEB.Models.ScapeTravelDB.Cliente" Property="Familia.Nombre" Title="Familia">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="ScapeTravelWEB.Models.ScapeTravelDB.Cliente" Filterable="false" Sortable="false" Width="200px" TextAlign="TextAlign.Center"> 
+                    <Template Context="cliente">
+                        <RadzenButton Text="Editar" ButtonStyle="ButtonStyle.Info" Icon="account_box" Size="ButtonSize.Medium"
+                            Shade="Shade.Lighter" Variant="Variant.Flat"
+                            Click=@(args => EditRow(args, cliente)) @onclick:stopPropagation="true" />
+
+                        <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium"
+                            Shade="Shade.Lighter" Variant="Variant.Flat"
+                            Click=@(args => GridDeleteButtonClick(args, cliente)) @onclick:stopPropagation="true" />
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
+
+        </RadzenDataGrid>
+
+    </RadzenColumn>
+  </RadzenRow>
+</RadzenStack>

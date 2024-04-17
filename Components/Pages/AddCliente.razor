@@ -1,0 +1,94 @@
+@page "/add-cliente"
+
+<PageTitle>Agregar Cliente</PageTitle>
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save Cliente</RadzenAlert>
+        <RadzenTemplateForm TItem="ScapeTravelWEB.Models.ScapeTravelDB.Cliente" Data="@cliente" Visible="@(cliente != null)" Submit="@FormSubmit">
+          <RadzenStack> 
+            <RadzenFormField Text="CI" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@cliente.CI" Name="CI" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="CI" Text="El CI es requerido" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Nombre" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@cliente.Nombre" Name="Nombre" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="Nombre" Text="El nombre es requerido" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Apellido Paterno" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@cliente.Apellido_pat" Name="Apellido_pat" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="Apellido_pat" Text="El apellido paterno es requerido" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Apellido Materno" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@cliente.Apellido_mat" Name="Apellido_mat" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="Apellido_mat" Text="El apellido materno es requerido" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Fecha de Nacimiento" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="dd/MM/yyyy" style="display: block; width: 100%" @bind-Value="@cliente.Nacimiento" Name="Nacimiento" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="Nacimiento" Text="El nacimiento es requerido" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Genero" Variant="Variant.Outlined">
+                <ChildContent>
+                    <RadzenDropDown Data="@formOptions.genres" @bind-Value="@cliente.Genero" Name="Genre"
+                                    style="display: block; width: 100%">
+                    </RadzenDropDown>
+                </ChildContent>
+                <Helper>
+                    <RadzenRequiredValidator Component="Genre" Text="El género es requerido" />
+                </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Nacionalidad" Variant="Variant.Outlined">
+                  <ChildContent>
+                     <RadzenDropDownDataGrid Data="@formOptions.countries" @bind-Value="@cliente.Nacionalidad" Name="Nacionalidad"
+                                            style="display: block; width: 100%" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" />
+                  </ChildContent>
+                  <Helper>
+                    <RadzenRequiredValidator Component="Nacionalidad" Text="La nacionalidad es requerida" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Nro de pasaporte" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@cliente.Nro_pasaporte" Name="Nro_pasaporte" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="Nro_pasaporte" Text="El pasaporte es requerido" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Telfono" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@cliente.Telefono" Name="Telefono" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Familia" Variant="Variant.Outlined">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@familiaForIdFamilia" TextProperty="Nombre" ValueProperty="Id" AllowClear=true
+                          style="display: block; width: 100%" @bind-Value="@cliente.FamiliaId" Name="IdFamilia"
+                           />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Guardar" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancelar" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

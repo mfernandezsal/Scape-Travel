@@ -1,0 +1,28 @@
+﻿@page "/miembros-familia"
+
+<RadzenButton Text="Cerrar" Click="@closeDialog" Style="border: none;" ButtonStyle="ButtonStyle.Dark" Variant="Variant.Outlined"></RadzenButton>
+<RadzenText TextAlign="TextAlign.Center" TextStyle="TextStyle.DisplayH4" class="mt-2">Familia @FamilyName</RadzenText>
+
+@foreach (var integrant in Integrants)
+{
+    <RadzenCard Class="rz-my-8 rz-mx-auto" Style="max-width: 600px; border: 1px solid #ccc;">
+        <RadzenRow AlignItems="AlignItems.Stretch">
+            <RadzenColumn Size="6">
+                <RadzenCard class="rz-background-color-primary-light rz-p-4 d-flex flex-column justify-content-center" style="height: 100%;">
+                    <RadzenText TextStyle="TextStyle.Overline" class="rz-display-flex rz-mt-2 rz-my-0 text-start" Style="color: whitesmoke">Miembro de Familia</RadzenText>
+                    <RadzenText TextStyle="TextStyle.H5" class="text-start" Style="color: whitesmoke"><b>@($"{integrant.Nombre} {integrant.Apellido_pat} {integrant.Apellido_mat}")</b></RadzenText>
+                </RadzenCard>
+            </RadzenColumn>
+            <RadzenColumn Size="6">
+                <RadzenCard class="rz-background-color-surface rz-shadow-0 rz-border-radius-0 rz-p-8" style="height: 100%;">
+                    <RadzenText TextStyle="TextStyle.Overline" class="rz-color-on-surface rz-display-flex rz-mt-4 rz-mb-0 text-start">Nacimiento</RadzenText>
+                    <RadzenText TextStyle="TextStyle.Body2" class="rz-color-on-surface"><b>@integrant.Nacimiento.ToString("dd/MM/yyyy")</b></RadzenText>
+                    <RadzenText TextStyle="TextStyle.Overline" class="rz-color-on-surface rz-display-flex rz-mt-4 rz-mb-0 text-start">CI</RadzenText>
+                    <RadzenText TextStyle="TextStyle.Body2" class="rz-color-on-surface"><b>@integrant.CI</b></RadzenText>
+                    <RadzenText TextStyle="TextStyle.Overline" class="rz-color-on-surface rz-display-flex rz-mt-4 rz-mb-0 text-start">Número de Pasaporte</RadzenText>
+                    <RadzenText TextStyle="TextStyle.Body2" class="rz-color-on-surface"><b>@integrant.Nro_pasaporte</b></RadzenText>
+                </RadzenCard>
+            </RadzenColumn>
+        </RadzenRow>
+    </RadzenCard>
+}
